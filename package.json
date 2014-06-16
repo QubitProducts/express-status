@@ -1,0 +1,9 @@
+{
+  "name": "express-status",
+  "version": "0.0.1",
+  "description": "An express status check default endpoing",
+  "main": "index.js",
+  "repo": "git@bitbucket.org:QuBitProducts/express-status.git",
+  "author": "Jing Dong",
+  "license": "ISC"
+}
