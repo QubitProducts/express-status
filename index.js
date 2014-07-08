@@ -1,13 +1,12 @@
-var set = function (expressApp, responder) {
-  expressApp.get("/status", function (req, res) {
-    if (responder) {
-      responder(req, res);
-    } else {
-      res.end("service is alive");  
-    }
-  });  
+function expressStatus(app, handler) {
+  app.get('/status', handler || defaultHandler);
 }
 
-module.exports = {
-  set: set
+function defaultHandler(req, res) {
+  res.end("service is alive");
 }
+
+//support old API 
+expressStatus.set = expressStatus;
+
+module.exports = expressStatus;

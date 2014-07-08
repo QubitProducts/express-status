@@ -13,26 +13,31 @@ add the following to package.json
 }
 ````
 
-
 #### Setup in your app
 
 ````
 // normal express stuff
-var express = require('express');
-var app = express();
+var app = require("express")();
 
 // Setup status page
+require("express-status")(app);
+
+//or if you want a custom handler
+require("express-status")(app, status);
+
+function status(req, res) {
+  res.send({
+    lastCalled: 1
+  })
+}
+
+//or of you want to use the old api
+
 var expressStatus = require('express-status');
 expressStatus.set(app);
-
-// alternatively, you can modify response function for status endpoint
-expressStatus.set(app, function (req, res) {
-  res.send("not great, but fine");
-});
-
 ````
 
-'/status' page will be available
+"/status" page will be available
 
 
 ## Improvements
