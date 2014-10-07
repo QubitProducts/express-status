@@ -8,5 +8,6 @@ function defaultHandler(req, res) {
 
 //support old API 
 expressStatus.set = expressStatus;
+expressStatus.handler = defaultHandler;
 
 module.exports = expressStatus;
