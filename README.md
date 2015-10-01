@@ -1,52 +1,45 @@
-express-status
+Express Status
 ==============
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
-A common npm module to expose a status page with common messages
+Installs a `/status` endpoint that will always respond with status code `200` if the server is up.
 
-#### Installation
+Instalation
+-----------
 
-add the following to package.json
+```bash
+$ npm install express-status
+```
 
-````
-{
-  "express-status": "git+ssh://git@bitbucket.org/QuBitProducts/express-status.git"
-}
-````
+Example
+-------
 
-#### Setup in your app
+```js
+var express = require('express')
+var expressStatus = require('express-status')
 
-````
-// normal express stuff
-var app = require("express")();
+var app = express()
+app.use(expressStatus())
+app.listen(1234)
+```
 
-// Setup status page
-require("express-status")(app);
+```bash
+$ curl -s -D - http://localhost:1234/status
 
-//or if you want a custom handler
-require("express-status")(app, status);
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 2
+ETag: W/"2-4KoCHiHd29bYzs7HHpz1ZA"
+Date: Thu, 01 Oct 2015 13:36:43 GMT
+Connection: keep-alive
 
-function status(req, res) {
-  res.send({
-    lastCalled: 1
-  })
-}
+OK
+```
 
-//or of you want to use the old api
+Running tests
+-------------
 
-var expressStatus = require('express-status');
-expressStatus.set(app);
-````
-
-"/status" page will be available
-
-
-## Improvements
-
-Things we can do here:
-
- * Define a common schema
- * Add dependent services to response
- * Add other diagnose messages
-
-
- 
+```bash
+$ make test
+```
