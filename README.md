@@ -31,7 +31,7 @@ function status(req, res) {
   })
 }
 
-//or of you want to use the old api
+//or if you want to use the old api
 
 var expressStatus = require('express-status');
 expressStatus.set(app);
